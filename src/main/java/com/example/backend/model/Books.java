@@ -25,4 +25,28 @@ public class Books {
 
     @Column(name = "description", nullable = true)
     private String description;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getIsbn() {
+        return isbn;
+    }
+
+    public int getAuthor_id() {
+        return author_id;
+    }
+
+    public int getPublisher_id() {
+        return publisher_id;
+    }
+
+    public String getYear_pub() {
+        return year_pub;
+    }
 }
