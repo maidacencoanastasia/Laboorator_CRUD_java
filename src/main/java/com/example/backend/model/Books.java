@@ -8,22 +8,22 @@ import lombok.Data;
 @Table(name = "books")
 public class Books {
     @Id
-    @Column(name = "isbn", nullable = false)
+    @Column(name = "isbn")
     private String isbn;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title")
     private String title;
 
-    @Column(name = "author_id", nullable = false)
+    @Column(name = "author_id")
     private int author_id;
 
-    @Column(name = "publisher_id", nullable = true)
+    @Column(name = "publisher_id")
     private int publisher_id;
 
-    @Column(name = "year_pub", nullable = true)
+    @Column(name = "year_pub")
     private String year_pub;
 
-    @Column(name = "description", nullable = true)
+    @Column(name = "description")
     private String description;
 
     public String getTitle() {
