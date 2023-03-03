@@ -1,4 +1,4 @@
-package com.example.laborator_crud.model;
+package com.example.backend.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
