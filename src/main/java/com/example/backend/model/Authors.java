@@ -1,14 +1,15 @@
 package com.example.backend.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.Data;
 
+@Table(name = "authors")
+@Entity
+@Data
 public class Authors {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int author_idbn;
+    private int author_id;
 
     @Column(name = "name_last", nullable = false)
     private String name_last;
@@ -17,6 +18,8 @@ public class Authors {
 
     @Column(name = "country", nullable = false)
     private String country;
+    @Column(name = "author_idbn")
+    private int author_idbn;
 
     public int getauthor_idbn() {
         return author_idbn;
