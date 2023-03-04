@@ -35,7 +35,7 @@ public class ApiController {
         return "SAVED successful";
     }
 
-    @PutMapping(value = "update/{id}")
+    @PutMapping(value = "/update/{id}")
     public String updateAuthor(@PathVariable(name = "id") int author_id, @RequestBody Authors author) {
         Authors updatedAuthor = authorRepository.findById(author_id).get();
         updatedAuthor.setName_first(author.getName_first());
@@ -44,5 +44,12 @@ public class ApiController {
         updatedAuthor.setAuthor_idbn(author.getauthor_idbn());
         authorRepository.save(updatedAuthor);
         return "UPDATED successful";
+    }
+
+    @DeleteMapping(value ="delete/{author_id}" )
+    public String deleteAuthor(@PathVariable int author_id){
+        Authors deleteAuthor = authorRepository.findById(author_id).get();
+        authorRepository.delete(deleteAuthor);
+        return "DELETED successful";
     }
 }
