@@ -1,10 +1,8 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Authors;
-import com.example.backend.model.Books;
 import com.example.backend.repository.AuthorRepository;
 import com.example.backend.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -38,10 +36,10 @@ public class ApiController {
     @PutMapping(value = "/update/{id}")
     public String updateAuthor(@PathVariable(name = "id") int author_id, @RequestBody Authors author) {
         Authors updatedAuthor = authorRepository.findById(author_id).get();
-        updatedAuthor.setName_first(author.getName_first());
-        updatedAuthor.setName_last(author.getName_last());
+        updatedAuthor.setNameFirst(author.getNameFirst());
+        updatedAuthor.setNameLast(author.getNameLast());
         updatedAuthor.setCountry(author.getCountry());
-        updatedAuthor.setAuthor_idbn(author.getauthor_idbn());
+        updatedAuthor.setAuthor_idbn(author.getAuthor_idbn());
         authorRepository.save(updatedAuthor);
         return "UPDATED successful";
     }
