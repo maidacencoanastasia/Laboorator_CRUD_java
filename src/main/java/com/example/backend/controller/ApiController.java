@@ -36,16 +36,16 @@ public class ApiController {
     @PutMapping(value = "/update/{id}")
     public String updateAuthor(@PathVariable(name = "id") int author_id, @RequestBody Authors author) {
         Authors updatedAuthor = authorRepository.findById(author_id).get();
-        updatedAuthor.setNameFirst(author.getNameFirst());
-        updatedAuthor.setNameLast(author.getNameLast());
+        updatedAuthor.setFirstName(author.getFirstName());
+        updatedAuthor.setLastName(author.getLastName());
         updatedAuthor.setCountry(author.getCountry());
-        updatedAuthor.setAuthor_idbn(author.getAuthor_idbn());
+        updatedAuthor.setAuthorIdnp(author.getAuthorIdnp());
         authorRepository.save(updatedAuthor);
         return "UPDATED successful";
     }
 
-    @DeleteMapping(value ="delete/{author_id}" )
-    public String deleteAuthor(@PathVariable int author_id){
+    @DeleteMapping(value = "delete/{author_id}")
+    public String deleteAuthor(@PathVariable int author_id) {
         Authors deleteAuthor = authorRepository.findById(author_id).get();
         authorRepository.delete(deleteAuthor);
         return "DELETED successful";

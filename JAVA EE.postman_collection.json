@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "91f26ae5-e016-486f-a062-0be050602b1d",
+		"name": "JAVA EE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "17582441"
+	},
+	"item": [
+		{
+			"name": "Get All authors",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/authors",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"authors"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST save 1 more author",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name_last\":\"Maidacenco\",\r\n    \"name_first\":\"Anastasia\",\r\n    \"country\":\"Moldova\",\r\n    \"author_idbn\":1999\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/save",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"save"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT update",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name_last\":\"Maidacenco\",\r\n    \"name_first\":\"Anastasia\",\r\n    \"country\":\"Moldova\",\r\n    \"author_idbn\":200144\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/update/7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"update",
+						"7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/delete/7",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"delete",
+						"7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
