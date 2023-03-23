@@ -1,20 +1,19 @@
 package com.example.backend.controller;
 
 import com.example.backend.model.Authors;
-import com.example.backend.repository.AuthorRepository;
-import com.example.backend.repository.BookRepository;
+import com.example.backend.service.AuthorService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 public class ApiController {
-    private final BookRepository bookRepository;
-    private final AuthorRepository authorRepository;
+    final AuthorService authorService;
 
-    public ApiController(BookRepository bookRepository, AuthorRepository authorRepository) {
-        this.bookRepository = bookRepository;
-        this.authorRepository = authorRepository;
+    public ApiController(AuthorService authorService) {
+        this.authorService = authorService;
     }
 
     @GetMapping(value = "/")
@@ -23,31 +22,28 @@ public class ApiController {
     }
 
     @GetMapping(value = "/authors")
-    public List<Authors> getAuthors() {
-        return authorRepository.findAll();
+    public List<Authors> getAllAuthors() {
+        return authorService.getAllAuthors();
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Authors> getAuthorById(@PathVariable("id") int id) {
+        return new ResponseEntity<>(authorService.getAuthorById(id), HttpStatus.OK);
     }
 
     @PostMapping(value = "/save")
-    public String saveAuthor(@RequestBody Authors author) {
-        authorRepository.save(author);
-        return "SAVED successful";
+    public ResponseEntity<Authors> saveAuthor(@RequestBody Authors author) {
+        return new ResponseEntity<Authors>(authorService.saveAuthor(author), HttpStatus.CREATED);
     }
 
     @PutMapping(value = "/update/{id}")
-    public String updateAuthor(@PathVariable(name = "id") int author_id, @RequestBody Authors author) {
-        Authors updatedAuthor = authorRepository.findById(author_id).get();
-        updatedAuthor.setFirstName(author.getFirstName());
-        updatedAuthor.setLastName(author.getLastName());
-        updatedAuthor.setCountry(author.getCountry());
-        updatedAuthor.setAuthorIdnp(author.getAuthorIdnp());
-        authorRepository.save(updatedAuthor);
-        return "UPDATED successful";
+    public ResponseEntity<Authors> updateAuthor(@PathVariable(name = "id") int id, @RequestBody Authors author) {
+        return new ResponseEntity<Authors>(authorService.updateAuthor(author, id), HttpStatus.OK);
     }
 
     @DeleteMapping(value = "delete/{author_id}")
-    public String deleteAuthor(@PathVariable int author_id) {
-        Authors deleteAuthor = authorRepository.findById(author_id).get();
-        authorRepository.delete(deleteAuthor);
-        return "DELETED successful";
+    public ResponseEntity<String> deleteAuthor(@PathVariable int author_id) {
+        authorService.deleteAuthor(author_id);
+        return new ResponseEntity<String>("AUTHOR Successfully delete", HttpStatus.OK);
     }
 }
