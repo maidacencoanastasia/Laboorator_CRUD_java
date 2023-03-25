@@ -1,7 +1,10 @@
 package com.example.backend.model;
 
-import jakarta.persistence.*;
+//import jakarta.persistence.*;
 import lombok.Data;
+import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
 @Table(name = "authors")
 @Entity
